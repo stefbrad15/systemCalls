@@ -14,8 +14,6 @@ using namespace std;
 
 //Prototypes
 void searchDirectory(string dirPath, char *searchString);
-void decodeMode(mode_t mode) ;
-string testMode (mode_t mode, mode_t flag, string description);
 void searchFile(string fileName, string toSearch);
 string GWP();
 
@@ -136,25 +134,3 @@ void searchFile(string fileName, string toSearch){
 		}
 }
 
-string testMode (mode_t mode, mode_t flag, string description) {
-    if ((mode & S_IFMT) == flag)
-	return description;
-    else
-	return "";
-}
-
-/*
- * decode the mode bits for the file to tell which
- * type of file it is.  The information for this was
- * found on a variety of man pages (stat, mknod)
- */
-void decodeMode(mode_t mode) {
-    cout << testMode(mode, S_IFREG, "Regular File\n");
-    cout << testMode(mode, S_IFDIR, "Directory\n");
-    cout << testMode(mode, S_IFCHR, "Character-special device file\n");
-    cout << testMode(mode, S_IFBLK, "Block-special device file\n");
-    cout << testMode(mode, S_IFLNK, "Symbolic Link\n");
-    cout << testMode(mode, S_IFIFO, "FIFO file\n");
-    cout << testMode(mode, S_IFSOCK, "Unix Domain Socket\n");
-    return;
-}
